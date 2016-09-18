@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    {% block head %}
+      <title>Sweep | {% block title %}{% endblock %} </title>
+    {% endblock %}
+
+    <!-- Bootstrap -->
+    <link href={{ url_for('static', filename='bootstrap.css') }} rel="stylesheet">
+  </head>
+  <body>
+    <div class="container" id="content">
+
+      {% block content %}{% endblock %}
+
+      <div id="footer">
+          {% block footer %}
+          Built &amp; designed by <a href="http://github.com/chapinb/sweep">chapinb</a>.
+          {% endblock %}
+      </div>
+
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src={{ url_for('static', filename='jquery.js') }}></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src={{ url_for('static', filename='bootstrap.js') }}></script>
+  </body>
+</html>

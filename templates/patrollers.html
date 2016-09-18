@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block title %}Modify Patrollers{% endblock %}
+{% block content %}
+    <form class="form-horizontal">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Modify Patrollers</legend>
+
+
+    <p>
+      Please select a patroller to update, or "New Patroller" to add.
+    </p>
+
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">Select Patroller</label>
+      <div class="col-md-4">
+        <select id="selectbasic" name="selectbasic" class="form-control">
+          <option value="1">New Patroller</option>
+          <!-- Add dynamic listing from db later -->
+          <option value="2">Previous Patroller</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Patroller Name</label>
+      <div class="col-md-4">
+      <input id="textinput" name="patroller-name" type="text" placeholder="FirstName LastName" class="form-control input-md">
+      </div>
+    </div>
+
+    <!-- Multiple Radios -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="radios">Patroller Status</label>
+      <div class="col-md-4">
+      <div class="radio">
+        <label for="radios-0">
+          <input type="radio" name="full-time" id="radios-0" value="1" checked="checked">
+          Full-time
+        </label>
+    	</div>
+      <div class="radio">
+        <label for="radios-1">
+          <input type="radio" name="voulenteer" id="radios-1" value="2">
+          Voulenteer
+        </label>
+    	</div>
+      <div class="radio">
+        <label for="radios-1">
+          <input type="radio" name="trainee" id="radios-1" value="2">
+          Trainee
+        </label>
+    	</div>
+      <div class="radio">
+        <label for="radios-1">
+          <input type="radio" name="other" id="radios-1" value="2">
+          Other
+        </label>
+    	</div>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <div class="col-md-4">
+        <button id="singlebutton" name="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+    </fieldset>
+    </form>
+
+{% endblock %}
