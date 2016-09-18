@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}Modify Locations{% endblock %}
+{% block content %}
+    <form class="form-horizontal">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Modify Locations</legend>
+
+
+    <p>
+      Please select a location to update, or "New Location" to add.
+    </p>
+
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">Select Location</label>
+      <div class="col-md-4">
+        <select id="selectbasic" name="selectbasic" class="form-control">
+          <option value="1">New Location</option>
+          <!-- Add dynamic listing from db later -->
+          <option value="2">Previous Location</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Location Name</label>
+      <div class="col-md-4">
+      <input id="textinput" name="patroller-name" type="text" placeholder="Location name" class="form-control input-md">
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <div class="col-md-4">
+        <button id="singlebutton" name="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+    </fieldset>
+    </form>
+
+{% endblock %}

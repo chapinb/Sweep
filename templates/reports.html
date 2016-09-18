@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}Modify Locations{% endblock %}
+{% block content %}
+    <form class="form-horizontal">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Generate Patroller Report</legend>
+
+
+    <p>
+      Please select a date, or rage of date, and one or more patrollers to generate a report.
+    </p>
+
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">Select Patrollers</label>
+      <div class="col-md-4">
+        <select id="selectbasic" name="selectbasic" class="form-control">
+          <option value="1">New Location</option>
+          <!-- Add dynamic listing from db later -->
+          <option value="2">Previous Location</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- add date picker -->
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Report Name</label>
+      <div class="col-md-4">
+      <input id="textinput" name="patroller-name" type="text" placeholder="Location name" class="form-control input-md">
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <div class="col-md-4">
+        <button id="singlebutton" name="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+    </fieldset>
+    </form>
+
+{% endblock %}

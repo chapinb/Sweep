@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
-{% block title %}Modify Patrollers{% endblock %}
+{% block title %}Patroller Sign On{% endblock %}
 {% block content %}
-    <h1>Sweep</h1>
+
     <p>
-      It appears you do not have any patrollers registered - <a href="patrollers.html">click here</a> to add your first patroller!
+      {{ message | safe }}
     </p>
 
-    
+
 {% endblock %}
