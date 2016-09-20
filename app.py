@@ -2,8 +2,10 @@ from __future__ import print_function
 import os
 import sys
 import datetime
+import csv
+import StringIO
 from peewee import *
-from flask import Flask, render_template, request, abort, redirect, url_for
+from flask import Flask, render_template, request, abort, redirect, url_for, send_file
 app = Flask(__name__)
 db = SqliteDatabase('sweep.sqlite3')
 
@@ -141,7 +143,46 @@ def generate_active_patrollers():
 
 @app.route("/reports.html")
 def reports():
-    return render_template("reports.html")
+    return render_template("reports.html", patrollers=Patroller.select())
+
+@app.route("/generate_report", methods=['POST'])
+def generate_report():
+    if request.method == "POST":
+        r = request.form.copy()
+        if r['select-patroller'] == "all_patrollers":
+            a = Activity.select().where((Activity.signon>=r['start'])
+                & (Activity.signoff<=r['end']))
+        else:
+            p = Patroller.get(Patroller.name==['select-patroller'])
+            a = Activity.select().where((Activity.patroller==p)
+                & (Activity.signon>=r['start'])
+                & (Activity.signoff<=r['end']))
+        data = []
+        for i in a:
+            d = {'id': i.id}
+            d['patroller'] = i.patroller.name
+            d['location'] = i.location.name
+            if i.is_leader:
+                d['is_leader'] = "True"
+            else:
+                d['is_leader'] = "False"
+            d['signon'] = i.signon
+            d['signoff'] = i.signoff
+            d['hours'] = str((i.signoff - i.signon))
+            data.append(d)
+        writer =  StringIO.StringIO()
+        csv_writer = csv.DictWriter(writer,
+            fieldnames=['id', 'patroller', 'location', 'is_leader',
+                        'signon', 'signoff', 'hours'])
+        csv_writer.writeheader()
+        csv_writer.writerows(data)
+        writer.seek(0)
+        return send_file(writer, attachment_filename=r['report-name']+'.csv',
+                         as_attachment=True)
+
+
+
+
 
 def check_for_db():
     need = []

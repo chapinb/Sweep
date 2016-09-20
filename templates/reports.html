@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 {% block title %}Modify Locations{% endblock %}
 {% block content %}
-    <form class="form-horizontal">
+<script src={{ url_for('static', filename='js/moment.js') }}></script>
+<script src={{ url_for('static', filename='js/collapse.js') }}></script>
+<script src={{ url_for('static', filename='js/transition.js') }}></script>
+<script src={{ url_for('static', filename='js/bootstrap-datetimepicker.js') }}></script>
+    <form class="form-horizontal" method="post" action="generate_report">
     <fieldset>
 
     <!-- Form Name -->
@@ -14,34 +18,76 @@
 
     <!-- Select Basic -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="selectbasic">Select Patrollers</label>
+      <label class="col-md-4 control-label" for="select-patroller">Select Patrollers</label>
       <div class="col-md-4">
-        <select id="selectbasic" name="selectbasic" class="form-control">
-          <option value="1">New Location</option>
-          <!-- Add dynamic listing from db later -->
-          <option value="2">Previous Location</option>
+        <select id="selectbasic" name="select-patroller" class="form-control">
+          <option value="all_patrollers">All Patrollers</option>
+          {% for patroller in patrollers %}
+            <option value="{{ patroller.name }}">{{ patroller.name }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
 
-    <!-- add date picker -->
+    <!-- add date picker from https://eonasdan.github.io/bootstrap-datetimepicker/-->
+        <div class="form-group">
+          <label class='col-md-4 control-label' for='datetimepicker6'>Start Date</label>
+          <div class='col-md-4'>
+            <div class='input-group date' id='datetimepicker6'>
+                <input type='text' name="start" class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+          <label class='col-md-4 control-label' for='datetimepicker7'>End Date</label>
+          <div class='col-md-4'>
+            <div class='input-group date' id='datetimepicker7'>
+                <input type='text' name="end" class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script language="JavaScript" type="text/javascript">
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+              useCurrent: false //Important! See issue #1075
+            });
+            $('#datetimepicker7').datetimepicker({
+                useCurrent: false //Important! See issue #1075
+            });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date).format("YYYY-MM-DD");
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date).format("YYYY-MM-DD");
+            });
+        });
+    </script>
 
     <!-- Text input-->
     <div class="form-group">
       <label class="col-md-4 control-label" for="textinput">Report Name</label>
       <div class="col-md-4">
-      <input id="textinput" name="patroller-name" type="text" placeholder="Location name" class="form-control input-md">
+      <input id="textinput" name="report-name" type="text" placeholder="Report name" class="form-control input-md">
       </div>
     </div>
 
     <!-- Button -->
     <div class="form-group">
-      <div class="col-md-4">
-        <button id="singlebutton" name="submit" class="btn btn-primary">Submit</button>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 center-block">
+        <button id="singlebutton" name="button" value="submit" class="btn btn-primary">Submit</button>
       </div>
+      <div class="col-md-4"></div>
     </div>
 
     </fieldset>
     </form>
+
 
 {% endblock %}
