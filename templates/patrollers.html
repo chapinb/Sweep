@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Modify Patrollers{% endblock %}
 {% block content %}
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post" action="update_patrollers">
     <fieldset>
 
     <!-- Form Name -->
@@ -16,10 +16,11 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="selectbasic">Select Patroller</label>
       <div class="col-md-4">
-        <select id="selectbasic" name="selectbasic" class="form-control">
-          <option value="1">New Patroller</option>
-          <!-- Add dynamic listing from db later -->
-          <option value="2">Previous Patroller</option>
+        <select id="selectbasic" name="patroller-select" class="form-control">
+          <option value="new-patroller">New Patroller</option>
+          {% for patroller in patrollers %}
+            <option value="{{ patroller.name }}">{{ patroller.name }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
@@ -38,25 +39,25 @@
       <div class="col-md-4">
       <div class="radio">
         <label for="radios-0">
-          <input type="radio" name="full-time" id="radios-0" value="1" checked="checked">
+          <input type="radio" name="status" id="radios-0" value="full_time" checked="checked">
           Full-time
         </label>
     	</div>
       <div class="radio">
         <label for="radios-1">
-          <input type="radio" name="voulenteer" id="radios-1" value="2">
+          <input type="radio" name="status" id="radios-1" value="voulenteer">
           Voulenteer
         </label>
     	</div>
       <div class="radio">
         <label for="radios-1">
-          <input type="radio" name="trainee" id="radios-1" value="2">
+          <input type="radio" name="status" id="radios-1" value="trainee">
           Trainee
         </label>
     	</div>
       <div class="radio">
         <label for="radios-1">
-          <input type="radio" name="other" id="radios-1" value="2">
+          <input type="radio" name="status" id="radios-1" value="other">
           Other
         </label>
     	</div>
@@ -65,10 +66,15 @@
 
     <!-- Button -->
     <div class="form-group">
-      <div class="col-md-4">
-        <button id="singlebutton" name="submit" class="btn btn-primary">Submit</button>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 center-block">
+        <button id="singlebutton" name="button" value="update" class="btn btn-primary">Submit</button>
+        <button id="singlebutton" name="button" value="delete" class="btn btn-danger">Delete</button>
       </div>
+      <div class="col-md-4"></div>
+
     </div>
+
 
     </fieldset>
     </form>

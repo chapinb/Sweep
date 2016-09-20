@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Modify Locations{% endblock %}
 {% block content %}
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post" action="update_locations">
     <fieldset>
 
     <!-- Form Name -->
@@ -16,10 +16,11 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="selectbasic">Select Location</label>
       <div class="col-md-4">
-        <select id="selectbasic" name="selectbasic" class="form-control">
-          <option value="1">New Location</option>
-          <!-- Add dynamic listing from db later -->
-          <option value="2">Previous Location</option>
+        <select id="selectbasic" name="select-location" class="form-control">
+          <option value="new-location">New Location</option>
+          {% for location in locations %}
+            <option value="{{ location.name }}">{{ location.name }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
@@ -28,15 +29,18 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="textinput">Location Name</label>
       <div class="col-md-4">
-      <input id="textinput" name="patroller-name" type="text" placeholder="Location name" class="form-control input-md">
+      <input id="textinput" name="location-name" type="text" placeholder="Location name" class="form-control input-md">
       </div>
     </div>
 
     <!-- Button -->
     <div class="form-group">
-      <div class="col-md-4">
-        <button id="singlebutton" name="submit" class="btn btn-primary">Submit</button>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 center-block">
+        <button id="singlebutton" name="button" value="update" class="btn btn-primary">Submit</button>
+        <button id="singlebutton" name="button" value="delete" class="btn btn-danger">Delete</button>
       </div>
+      <div class="col-md-4"></div>
     </div>
 
     </fieldset>

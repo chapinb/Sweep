@@ -5,6 +5,75 @@
     <p>
       {{ message | safe }}
     </p>
+    {% if message|length == 0%}
 
+    <form class="form-horizontal" method="post" action="activity">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Patroller Sign On</legend>
+
+
+    <p>
+      Please select a patroller and location to sign in or out.
+    </p>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label for="patroller-name">Select Patroller</label>
+      <select class="form-control" name="patroller-name" id="patroller-name" size="{{ Patroller.select().count() }}">
+        {% for patroller in Patroller.select() %}
+          <option>{{ patroller.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="location-name">Select Location</label>
+      <select class="form-control" name="location-name" id="location-name" size="{{ Location.select().count() }}">
+        {% for location in Location.select() %}
+          <option>{{ location.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="is_leader"> Location Leader
+      </label>
+    </div>
+
+    <!--  -->
+
+    <!-- Button -->
+    <div class="form-group">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 center-block">
+        <button id="singlebutton" name="button" value="sign-in" class="btn btn-success">Sign In</button>
+        <button id="singlebutton" name="button" value="sign-out" class="btn btn-info">Sign Out</button>
+      </div>
+      <div class="col-md-4"></div>
+
+    </div>
+
+    <!-- Show patrollers by location -->
+    <div class="row">
+      {% for location in registered.keys() %}
+      <div class="col-md-3">
+        <label>{{ location }}</label>
+        <div class="well">
+          {% for p in registered[location] %}
+            <p>{{ p.patroller.name }}
+              {% if p.is_leader %}
+                <span class="glyphicon glyphicon-star"></span>
+              {% endif %}</p>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% endif %}
 
 {% endblock %}
