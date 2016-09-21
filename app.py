@@ -5,7 +5,7 @@ import datetime
 import csv
 try:
     import StringIO
-except ImportError, e:
+except ImportError:
     from io import StringIO
 from peewee import *
 from flask import Flask, render_template, request, abort, redirect, url_for, send_file
