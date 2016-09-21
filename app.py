@@ -9,6 +9,8 @@ from flask import Flask, render_template, request, abort, redirect, url_for, sen
 app = Flask(__name__)
 db = SqliteDatabase('sweep.sqlite3')
 
+# TODO document code
+
 # Database Tables/Classes
 class BaseModel(Model):
 
