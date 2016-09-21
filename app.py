@@ -4,7 +4,7 @@ import sys
 import datetime
 import csv
 try:
-    import StringIO # TODO not supported in py 3.3, 3.4, 3.5, 3.6
+    import StringIO
 except ModuleNotFoundError:
     from io import StringIO
 from peewee import *
@@ -117,7 +117,11 @@ def db_activity():
         patroller_name = request.form.get("patroller-name", None)
         location_name = request.form.get("location-name", None)
         leader = request.form.get("is_leader", False)
-        is_leader = leader == u"on" # TODO Not supported in py 3.2
+
+        is_leader = True
+        if leader == "on":
+            is_leader = True
+            
         if request.form['button'] == 'sign-in':
             p = Patroller.get(Patroller.name == patroller_name)
             l = Location.get(Location.name == location_name)
