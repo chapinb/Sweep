@@ -5,7 +5,7 @@ import datetime
 import csv
 try:
     import StringIO
-except ModuleNotFoundError:
+except ImportError, e:
     from io import StringIO
 from peewee import *
 from flask import Flask, render_template, request, abort, redirect, url_for, send_file
@@ -121,7 +121,7 @@ def db_activity():
         is_leader = True
         if leader == "on":
             is_leader = True
-            
+
         if request.form['button'] == 'sign-in':
             p = Patroller.get(Patroller.name == patroller_name)
             l = Location.get(Location.name == location_name)
