@@ -3,7 +3,10 @@ import os
 import sys
 import datetime
 import csv
-import StringIO
+try:
+    import StringIO # TODO not supported in py 3.3, 3.4, 3.5, 3.6
+except ModuleNotFoundError:
+    from io import StringIO
 from peewee import *
 from flask import Flask, render_template, request, abort, redirect, url_for, send_file
 app = Flask(__name__)
@@ -114,7 +117,7 @@ def db_activity():
         patroller_name = request.form.get("patroller-name", None)
         location_name = request.form.get("location-name", None)
         leader = request.form.get("is_leader", False)
-        is_leader = leader == u"on"
+        is_leader = leader == u"on" # TODO Not supported in py 3.2
         if request.form['button'] == 'sign-in':
             p = Patroller.get(Patroller.name == patroller_name)
             l = Location.get(Location.name == location_name)
@@ -177,10 +180,6 @@ def generate_report():
         writer.seek(0)
         return send_file(writer, attachment_filename=r['report-name']+'.csv',
                          as_attachment=True)
-
-
-
-
 
 def check_for_db():
     need = []
