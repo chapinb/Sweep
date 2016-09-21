@@ -5,7 +5,7 @@ Ski Patrol Sweep App
 
 # Installation
 
-*Requires Python 2.7+ (including Python3)*
+*Requires Python 2.6 & 2.7*
 
 You may download or clone the code in this repository.
 
