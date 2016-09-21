@@ -2,6 +2,8 @@
 *.sqlite3
 *.db
 *.sqlite
+htmlcov/
+.coverage
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
