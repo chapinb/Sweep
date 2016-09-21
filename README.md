@@ -1,6 +1,8 @@
 # Sweep
 Ski Patrol Sweep App
 
+[![Build Status](https://travis-ci.com/chapinb/Sweep.svg?token=km6qXLN68v38WBoARnwK&branch=master)](https://travis-ci.com/chapinb/Sweep)
+
 # Installation
 
 *Requires Python 2.7+ (including Python3)*
