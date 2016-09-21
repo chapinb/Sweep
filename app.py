@@ -67,7 +67,6 @@ def db_patrollers():
     if request.method == "POST":
         if request.form['button'] == 'update':
             if request.form['patroller-select'] == "new-patroller":
-                print(request.form['patroller-name'])
                 p = Patroller.create(name=request.form['patroller-name'],
                     status=request.form['status'])
             else:
@@ -91,7 +90,6 @@ def db_locations():
     if request.method == "POST":
         if request.form['button'] == 'update':
             if request.form['select-location'] == "new-location":
-                print(request.form['location-name'])
                 l = Location.create(name=request.form['location-name'])
             else:
                 l = Location.get(Location.name == request.form['select-location'])
@@ -111,12 +109,10 @@ def db_locations():
 @app.route("/activity", methods=["POST"])
 def db_activity():
     if request.method == "POST":
-        print(request.form)
         patroller_name = request.form.get("patroller-name", None)
         location_name = request.form.get("location-name", None)
         leader = request.form.get("is_leader", False)
         is_leader = leader == u"on"
-        print(is_leader)
         if request.form['button'] == 'sign-in':
             p = Patroller.get(Patroller.name == patroller_name)
             l = Location.get(Location.name == location_name)
