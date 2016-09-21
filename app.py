@@ -94,7 +94,7 @@ def db_locations():
             else:
                 l = Location.get(Location.name == request.form['select-location'])
                 if len(request.form['location-name']) > 0:
-                    p.name = request.form['location-name']
+                    l.name = request.form['location-name']
                 l.save()
         elif request.form['button'] == 'delete':
             if request.form['select-location'] != "new-location":
