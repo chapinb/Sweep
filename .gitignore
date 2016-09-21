@@ -1,7 +1,7 @@
 # Custom extensions
 *.sqlite3
 *.db
-*.sqlite
+*.sqlite*
 htmlcov/
 .coverage
 
