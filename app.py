@@ -197,8 +197,5 @@ def check_for_db():
         need.append('locations')
     return need
 
-def create_db_connection():
-    db.connect()
-
 if __name__ == "__main__":
     app.run(debug=False)

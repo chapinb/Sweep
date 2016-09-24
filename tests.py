@@ -2,6 +2,7 @@ from app import app
 import app as App
 import unittest
 import os
+import datetime
 import shutil
 
 # TODO create teardown to delete db rows for all tables
@@ -218,11 +219,70 @@ class TestSweepApp(unittest.TestCase):
 
         self.assertEqual(a, 0)
         self.location_cleanup()
+    # TODO Troubleshoot and implement
+    # def test_acitivity_signin(self):
+    #     ddict = {
+    #         "patroller-select": "new-patroller",
+    #         "patroller-name": "Test Patroller Name 01",
+    #         "status": "full-time",
+    #         "button": "update"
+    #     }
+    #     result = self.app.post("/update_patrollers", data=ddict)
+    #
+    #     ddict = {
+    #         "select-location": "new-location",
+    #         "location-name": "Test Location Name 01",
+    #         "button": "update"
+    #     }
+    #     result = self.app.post("/update_locations", data=ddict)
+    #
+    #     ddict = {
+    #         "patroller-name": "Test Patroller Name 01",
+    #         "location-name": "Test Location Name 01",
+    #         "is_leader": "on",
+    #         "button": "sign-in"
+    #     }
+    #     result = self.app.post("/activity", data=ddict)
+    #     self.assertEqual(result.status_code, 302)
+    #
+    # def foo_acitivity_signout(self):
+    #     ddict = {
+    #         "patroller-select": "new-patroller",
+    #         "patroller-name": "Test Patroller Name 01",
+    #         "status": "full-time",
+    #         "button": "update"
+    #     }
+    #     result = self.app.post("/update_patrollers", data=ddict)
+    #
+    #     ddict = {
+    #         "select-location": "new-location",
+    #         "location-name": "Test Location Name 01",
+    #         "button": "update"
+    #     }
+    #     result = self.app.post("/update_locations", data=ddict)
+    #
+    #     ddict = {
+    #         "patroller-name": "Test Patroller Name 01",
+    #         "location-name": "Test Location Name 01",
+    #         "is_leader": "on",
+    #         "button": "sign-in"
+    #     }
+    #     result = self.app.post("/activity", data=ddict)
+    #
+    #     ddict = {
+    #         "patroller-name": "Test Patroller Name 01",
+    #         "location-name": "Test Location Name 01",
+    #         "button": "sign-out"
+    #     }
+    #     result = self.app.post("/activity", data=ddict)
+    #     self.assertEqual(result.status_code, 302)
 
 
 # runs the unit tests in the module
 if __name__ == '__main__':
     moved = None
+    # Backup DB for tests
+    n = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sweep.sqlite3")):
         shutil.move(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sweep.sqlite3"), os.path.join(os.path.dirname(os.path.abspath(__file__)), "sweep.sqlite3.bak"))
         moved = True
