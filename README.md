@@ -2,6 +2,7 @@
 Ski Patrol Sweep App
 
 [![Build Status](https://travis-ci.com/chapinb/Sweep.svg?token=km6qXLN68v38WBoARnwK&branch=master)](https://travis-ci.com/chapinb/Sweep)
+[![Coverage Status](https://coveralls.io/repos/github/chapinb/Sweep/badge.svg?branch=master)](https://coveralls.io/github/chapinb/Sweep?branch=master)
 
 # Installation
 
